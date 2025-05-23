@@ -22,7 +22,7 @@
 
 | **Gün** | **Konu**                                               | **İçerik** |
 |------|------------------------------------------------------|---------|
-| 🏁 **Gün 1** | [**Tersine Mühendislik Nedir?**](./AndroidReverse101/第一阶段_计算机基础_逆向概论/Day_1_什么是逆向工程.md) | Gerçek dünya vs. yazılım dünyası, tersine mühendisliğin kullanım alanları |
+| 🏁 **Gün 1** | [**Tersine Mühendislik Nedir?**](./AndroidReverse101/birinci_asama_bilgisayar_temelleri_tersine_muhendislige_giris/Gun_1_Tersine_Muhendislik_Nedir.md) | Gerçek dünya vs. yazılım dünyası, tersine mühendisliğin kullanım alanları |
 | 🔍 **Gün 2** | [**Android Tersine Mühendisliğin Tarihi & Gelişimi**](./AndroidReverse101/第一阶段_计算机基础_逆向概论/Day_2_Android_逆向的历史与发展.md) | Eski APK kırma yöntemlerinden modern uygulama korumalarına |
 | ⚙️ **Gün 3** | [**CPU Komut Seti Nedir?**](./AndroidReverse101/第一阶段_计算机基础_逆向概论/Day_3_什么是_CPU_指令集.md) | CISC vs. RISC, Android neden ARM kullanıyor |
 | 🔥 **Gün 4** | [**Sayı Sistemi Dönüşümleri: 16'lık Sistem Neden Önemli?**](./AndroidReverse101/第一阶段_计算机基础_逆向概论/Day_4_进制转换_为什么16进制很重要.md) | 2'lik, 10'luk, 16'lık sayı sistemlerinin dönüşümü ve uygulamaları |
