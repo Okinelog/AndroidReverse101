@@ -27,7 +27,7 @@ BASE_DIR = "AndroidReverse101"
 
 # 定义学习阶段及目录
 stages = {
-    "第一阶段_计算机基础_逆向概论": [
+    "birinci_asama_bilgisayar_temelleri_tersine_muhendislige_giris": [
         (1, "什么是逆向工程"),
         (2, "Android 逆向的历史与发展"),
         (3, "什么是 CPU 指令集"),
