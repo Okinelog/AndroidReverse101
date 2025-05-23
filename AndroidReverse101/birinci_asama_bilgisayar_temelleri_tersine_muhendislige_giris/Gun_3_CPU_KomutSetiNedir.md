@@ -1,108 +1,110 @@
-# **📜 Day 3: 什么是 CPU 指令集？**
-  
-## **📌 学习目标**
-✅ 了解 **CPU 指令集** 的概念，及其在不同架构（x86、ARM、Smali）中的应用。  
-✅ 掌握 **x86（CISC）vs. ARM（RISC）vs. Smali（Android DEX 指令）** 的不同特点。  
-✅ 掌握 **ARMv7 (ARM32) vs. ARMv8 (ARM64)** 指令的区别。  
-✅ 理解 **C 语言与汇编语言（x86、ARM、Smali）的转换关系**。  
-✅ 通过实际代码示例，熟悉不同 CPU 指令集的基本用法。  
+# **📜 Gün 3: CPU Komut Seti Nedir?**
+
+## **📌 Öğrenme Hedefleri**  
+✅ **CPU komut seti** kavramını ve farklı mimarilerde (x86, ARM, Smali) nasıl uygulandığını öğrenmek.  
+✅ **x86 (CISC) vs. ARM (RISC) vs. Smali (Android DEX komutları)** arasındaki farklılıkları anlamak.  
+✅ **ARMv7 (ARM32) ve ARMv8 (ARM64)** komutları arasındaki farkları kavramak.  
+✅ **C dili ile assembly dilleri (x86, ARM, Smali) arasındaki dönüşümleri** anlamak.  
+✅ Gerçek kod örnekleri ile farklı CPU komut setlerinin temel kullanımlarına alışmak.
 
 ---
 
-# **1️⃣ 什么是 CPU 指令集？**
-**CPU 指令集（Instruction Set Architecture, ISA）** 是 CPU 运行的软件指令集合，决定了 CPU 如何解析和执行二进制代码。  
+# **1️⃣ CPU Komut Seti Nedir?**  
+**CPU komut seti mimarisi (Instruction Set Architecture, ISA)**, CPU’nun çalıştırdığı yazılım komutlarının kümesidir ve CPU’nun ikili kodları nasıl çözüp işleyeceğini belirler.
 
-🔹 主要作用：
-- 控制 **数据存取、运算、逻辑操作** 等计算任务。  
-- 影响 CPU 的**性能、功耗、兼容性**。  
-- 各大 CPU 制造商采用不同的 **指令架构**。  
+🔹 Temel görevler:  
+- Veri erişimi, aritmetik ve mantıksal işlemleri kontrol eder.  
+- CPU performansı, güç tüketimi ve uyumluluğunu etkiler.  
+- Farklı CPU üreticileri farklı komut seti mimarileri kullanır.
 
-🔹 **三种主要 CPU 指令集**
-| **架构** | **特点** | **应用场景** |
-|---------|--------|------------|
-| **x86（CISC）** | 复杂指令集，可变长指令，支持强大的寻址模式 | PC、服务器（Intel、AMD） |
-| **ARM（RISC）** | 精简指令集，固定指令长度，低功耗高性能 | 移动设备、嵌入式（高通、苹果、华为） |
-| **Smali（DEX 字节码）** | Android DEX 虚拟机指令，面向 Java/ART | Android 逆向工程 |
+🔹 **Üç temel CPU komut seti**  
+| **Mimari**     | **Özellikleri**                      | **Kullanım Alanları**                    |
+|---------------|-----------------------------------|----------------------------------------|
+| **x86 (CISC)**| Karmaşık komut seti, değişken uzunluklu komutlar, gelişmiş adresleme | PC, sunucular (Intel, AMD)              |
+| **ARM (RISC)**| Basitleştirilmiş komut seti, sabit uzunluklu komutlar, düşük güç tüketimi ve yüksek performans | Mobil cihazlar, gömülü sistemler (Qualcomm, Apple, Huawei) |
+| **Smali (DEX bytecode)** | Android DEX sanal makine komutları, Java/ART için | Android tersine mühendisliği             |
 
 ---
 
-# **2️⃣ x86 指令集**
-**x86（CISC）** 是 **Intel 和 AMD** 推动的架构，主要用于 PC 和服务器。  
-🔹 **特点：**
-- **指令长度不固定**（1-15 字节），比 ARM 复杂。  
-- **多模式寻址**，支持更复杂的操作。  
+# **2️⃣ x86 Komut Seti**  
+**x86 (CISC)**, **Intel ve AMD** tarafından geliştirilen mimari olup, başlıca PC ve sunucularda kullanılır.
 
-### **🔹 x86 汇编示例**
+🔹 **Özellikleri:**  
+- Komut uzunluğu sabit değildir (1-15 byte arası), ARM’a göre daha karmaşıktır.  
+- Çoklu adresleme modları ile daha karmaşık işlemler desteklenir.
+
+### **🔹 x86 Assembly Örneği**  
 ```assembly
 section .text
 global _start
 
 _start:
-    mov eax, 5      ; 把 5 赋值给 eax
+    mov eax, 5      ; eax registerına 5 ata
     add eax, 10     ; eax = eax + 10
     sub eax, 2      ; eax = eax - 2
-    mov ebx, eax    ; 把 eax 复制到 ebx
-    int 0x80        ; 触发系统调用
+    mov ebx, eax    ; eax’i ebx registerına kopyala
+    int 0x80        ; sistem çağrısını tetikle
 ```
 
-🔹 **特点：**
-- `mov eax, 5`：数据传输指令。  
-- `add eax, 10`：加法运算。  
-- `int 0x80`：Linux 下的系统调用。  
+🔹 **Özellikler:**  
+- `mov eax, 5`: Veri taşıma komutu.  
+- `add eax, 10`: Toplama işlemi.  
+- `int 0x80`: Linux altında sistem çağrısı.  
 
 ---
 
-# **3️⃣ ARM 指令集**
-**ARM（RISC）** 适用于移动设备，采用 **精简指令集（RISC）**。  
+# **3️⃣ ARM Komut Seti**  
+**ARM (RISC)**, mobil cihazlar için uygun olan **Basitleştirilmiş Komut Seti (RISC)** mimarisidir.  
 
-🔹 **ARM 特点**
-- **指令长度固定**（4 字节）。  
-- **寄存器数量多**（减少对内存访问，提高性能）。  
-- **低功耗高效能**，适用于移动设备。  
+🔹 **ARM Özellikleri**  
+- **Komut uzunluğu sabittir** (4 byte).  
+- **Register sayısı fazladır** (bellek erişimini azaltır, performansı artırır).  
+- **Düşük güç tüketimi ve yüksek performans**, mobil cihazlar için uygundur.  
 
-### **🔹 ARM 指令 vs. x86 指令**
-| **操作** | **x86 指令（CISC）** | **ARM 指令（RISC）** |
-|---------|-----------------|----------------|
-| 赋值 | `mov eax, 5` | `MOV R0, #5` |
-| 加法 | `add eax, 10` | `ADD R0, R0, #10` |
-| 读取内存 | `mov eax, [ebx]` | `LDR R0, [R1]` |
-| 存储到内存 | `mov [ebx], eax` | `STR R0, [R1]` |
+### **🔹 ARM Komutları vs. x86 Komutları**  
+| **İşlem**       | **x86 Komutu (CISC)** | **ARM Komutu (RISC)**   |
+|-----------------|-----------------------|------------------------|
+| Atama           | `mov eax, 5`          | `MOV R0, #5`           |
+| Toplama         | `add eax, 10`         | `ADD R0, R0, #10`      |
+| Bellekten Okuma | `mov eax, [ebx]`      | `LDR R0, [R1]`         |
+| Belleğe Yazma   | `mov [ebx], eax`      | `STR R0, [R1]`         |
 
 ---
 
-# **4️⃣ ARMv7 (32 位) vs. ARMv8 (64 位)**
-🔹 **ARMv7（ARM32）**
+
+# **4️⃣ ARMv7 (32-bit) vs. ARMv8 (64-bit)**
+🔹 **ARMv7 (ARM32)**  
 ```assembly
 .global _start
 _start:
-    MOV R0, #5      ; 赋值 5 给 R0
+    MOV R0, #5      ; R0’a 5 ata
     ADD R0, R0, #3  ; R0 = R0 + 3
-    LDR R1, [R2]    ; 读取 R2 指向的内存到 R1
-    STR R1, [R3]    ; 存储 R1 到 R3 指向的内存
-    B _start        ; 无限循环
+    LDR R1, [R2]    ; R2’nin gösterdiği bellekten R1’e oku
+    STR R1, [R3]    ; R1’i R3’ün gösterdiği belleğe yaz
+    B _start        ; sonsuz döngü
 ```
 
-🔹 **ARMv8（ARM64）**
+🔹 **ARMv8 (ARM64)**  
 ```assembly
 .global _start
 _start:
-    MOV X0, #5      ; 赋值 5 给 X0
+    MOV X0, #5      ; X0’a 5 ata
     ADD X0, X0, #3  ; X0 = X0 + 3
-    LDR X1, [X2]    ; 读取 X2 指向的内存到 X1
-    STR X1, [X3]    ; 存储 X1 到 X3 指向的内存
-    B _start        ; 无限循环
+    LDR X1, [X2]    ; X2’nin gösterdiği bellekten X1’e oku
+    STR X1, [X3]    ; X1’i X3’ün gösterdiği belleğe yaz
+    B _start        ; sonsuz döngü
 ```
 
-📌 **区别：**
-- ARMv7 使用 `R0-R15`，ARMv8 使用 `X0-X30`。  
-- ARMv8 指令支持 64 位数据计算，提高计算能力。  
+📌 **Farklar:**  
+- ARMv7 `R0-R15` registerlarını kullanır, ARMv8 `X0-X30` registerlarını kullanır.  
+- ARMv8 komutları 64-bit veri işlemesini destekler, işlem gücünü artırır.
 
 ---
 
-# **5️⃣ Smali 汇编语言（Android DEX 指令）**
-**Smali 是 Android DEX 的汇编语言，相当于 Java 字节码的汇编版本。**  
+# **5️⃣ Smali Assembly Dili (Android DEX Komutları)**  
+**Smali, Android DEX’in assembly dili olup, Java bytecode’unun assembly versiyonudur.**
 
-### **🔹 Smali 代码示例**
+### **🔹 Smali Kod Örneği**  
 ```smali
 .method public static sum(II)I
     .registers 3
@@ -111,32 +113,32 @@ _start:
 .end method
 ```
 
-🔹 **Smali 关键点**
-| **指令** | **作用** |
-|---------|--------|
-| `add-int v0, p0, p1` | p0 + p1 结果存入 v0 |
-| `return v0` | 返回计算结果 |
+🔹 **Smali Temel Noktalar**  
+| **Komut**           | **İşlevi**              |
+|---------------------|-------------------------|
+| `add-int v0, p0, p1`| p0 ile p1 toplanır, sonuç v0’a yazılır |
+| `return v0`         | Hesaplanan sonuç döndürülür |
 
-### **🔹 Smali 破解示例**
+### **🔹 Smali Kırma Örneği**  
 ```smali
 .method public isVip()Z
     .registers 2
-    const/4 v0, 0x1  # 让所有用户变成 VIP
+    const/4 v0, 0x1  # Tüm kullanıcıları VIP yap
     return v0
 .end method
 ```
 
 ---
 
-# **6️⃣ C 语言 vs. 汇编（x86/ARM/Smali）**
-### **🔹 C 代码**
+# **6️⃣ C Dili vs. Assembly (x86/ARM/Smali)**  
+### **🔹 C Kodu**  
 ```c
 int sum(int a, int b) {
     return a + b;
 }
 ```
 
-### **🔹 x86 汇编**
+### **🔹 x86 Assembly**  
 ```assembly
 sum:
     mov eax, edi
@@ -144,14 +146,14 @@ sum:
     ret
 ```
 
-### **🔹 ARM 汇编**
+### **🔹 ARM Assembly**  
 ```assembly
 sum:
     ADD R0, R0, R1
     BX LR
 ```
 
-### **🔹 Smali 代码**
+### **🔹 Smali Kodu**  
 ```smali
 .method public static sum(II)I
     .registers 3
@@ -162,41 +164,42 @@ sum:
 
 ---
 
-# **🛠 实战任务**
-1️⃣ **检查 Android 设备的 CPU 架构**
+# **🛠 Uygulamalı Görevler**  
+1️⃣ **Android cihazın CPU mimarisini kontrol et**  
 ```bash
 cat /proc/cpuinfo
 ```
 
-2️⃣ **运行 x86 汇编**
+2️⃣ **x86 assembly kodunu çalıştır**  
 ```bash
 nasm -f elf64 test.asm
 ld -o test test.o
 ./test
 ```
 
-3️⃣ **反编译 Android APK**
+3️⃣ **Android APK’yı geri derle**  
 ```bash
 apktool d myapp.apk -o output_dir
 ```
 
 ---
 
-# **📚 参考资料**
-📌 **ARM 指令集**
-- ARM 官方文档：[https://developer.arm.com/documentation](https://developer.arm.com/documentation)  
+# **📚 Kaynaklar**  
+📌 **ARM Komut Seti**  
+- ARM Resmi Dokümantasyonu: [https://developer.arm.com/documentation](https://developer.arm.com/documentation)  
 
-📌 **x86 指令集**
-- Intel 手册：[https://software.intel.com/en-us/articles/intel-sdm](https://software.intel.com/en-us/articles/intel-sdm)  
+📌 **x86 Komut Seti**  
+- Intel Kılavuzu: [https://software.intel.com/en-us/articles/intel-sdm](https://software.intel.com/en-us/articles/intel-sdm)  
 
-📌 **Smali 教程**
-- Smali 指南：[https://github.com/JesusFreke/smali](https://github.com/JesusFreke/smali)  
+📌 **Smali Rehberi**  
+- Smali Kılavuzu: [https://github.com/JesusFreke/smali](https://github.com/JesusFreke/smali)  
 
 ---
 
-🔥 **任务完成后，你将掌握：**  
-✅ x86、ARM、Smali 指令集的区别。  
-✅ ARM32 vs. ARM64 的演变。  
-✅ 运行和修改 Smali 代码。  
+🔥 **Görev tamamlandıktan sonra kazanacaklarınız:**  
+✅ x86, ARM ve Smali komut setleri arasındaki farklar.  
+✅ ARM32 ile ARM64 arasındaki evrim.  
+✅ Smali kodlarını çalıştırma ve değiştirme.
 
-🚀 **下一步（Day 4）**：**进制转换：为什么 16 进制很重要？** 🎯  
+🚀 **Sonraki adım (Gün 4):**  
+**Sayı Sistemleri: Neden 16’lık Sistem Önemlidir?** 🎯  
